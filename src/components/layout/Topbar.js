@@ -3,13 +3,14 @@ import { Box, Button, Center, Heading, HStack, VStack } from "@chakra-ui/react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/WithAuth";
 import { useMetaMask } from "metamask-react";
+import { Tooltip } from "@chakra-ui/react";
 
 export default function Topbar(props) {
   const { heading } = props;
   const { logout } = useContext(AuthContext);
-  let { account } = useMetaMask();
+  const { account } = useMetaMask();
 
-  account = getTrimmedAccount(account, 3);
+  const trimmedAccount = getTrimmedAccount(account, 3);
 
   return (
     <Box
@@ -20,7 +21,11 @@ export default function Topbar(props) {
       <Center>
         <VStack position={"absolute"} left='1rem' top='1rem'>
           <Box>Logged in with account</Box>
-          <Box fontSize={"12"}>{account}</Box>
+          <Tooltip label={account}>
+            <Box cursor={"pointer"} fontSize={"12"}>
+              {trimmedAccount}
+            </Box>
+          </Tooltip>
         </VStack>
       </Center>
       <Center>
