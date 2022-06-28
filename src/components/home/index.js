@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/WithAuth";
 import { getNonce } from "../../api/auth";
 import { useMetaMask } from "metamask-react";
+import { verify } from "../../api/auth";
 
 export default function Index() {
   const { status, connect, account, chainId, ethereum } = useMetaMask();
@@ -18,7 +19,8 @@ export default function Index() {
     } else {
       selectedAccount = account;
     }
-    const res = await getNonce(selectedAccount);
+    const nonce = await getNonce(selectedAccount);
+    await verify(nonce);
   };
 
   return (
