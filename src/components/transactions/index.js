@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getTransactions } from "../../api/transactions";
 import { Center, Box } from "@chakra-ui/react";
-import Transaction from "./Transaction";
+import TransactionTable from "./TransactionTable";
 import Loading from "../layout/loading";
 
 export default function Index() {
@@ -21,12 +21,8 @@ export default function Index() {
   }
 
   return (
-    <Center>
-      <Box>
-        {transactions.map((transaction) => (
-          <Transaction key={transaction.hash} transaction={transaction} />
-        ))}
-      </Box>
-    </Center>
+    <Box padding={"0rem 4rem"}>
+      <TransactionTable transactions={transactions} />
+    </Box>
   );
 }

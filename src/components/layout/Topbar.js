@@ -4,13 +4,14 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/WithAuth";
 import { useMetaMask } from "metamask-react";
 import { Tooltip } from "@chakra-ui/react";
+import { getTrimmedWord } from "../../utils";
 
 export default function Topbar(props) {
   const { heading } = props;
   const { logout } = useContext(AuthContext);
   const { account } = useMetaMask();
 
-  const trimmedAccount = getTrimmedAccount(account, 3);
+  const trimmedAccount = getTrimmedWord(account, 3, 3);
 
   return (
     <Box
@@ -38,16 +39,4 @@ export default function Topbar(props) {
       </Box>
     </Box>
   );
-}
-
-function getTrimmedAccount(account, noOfChars) {
-  if (!account) {
-    return "";
-  }
-  const starting = account.split("").slice(0, noOfChars).join("");
-  const ending = account
-    .split("")
-    .slice(account.length - noOfChars, account.length)
-    .join("");
-  return starting + "..." + ending;
 }
