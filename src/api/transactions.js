@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./middleware";
 import config from "../config";
 
 export const getTransactions = async () => {
