@@ -1,10 +1,15 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = function (props) {
   const router = useRouter();
+
+  const isLoggedIn = () => {
+    const authToken = localStorage.getItem("Authorisation");
+    return !!authToken;
+  };
 
   const login = (authToken) => {
     localStorage.setItem("Authorisation", authToken);
@@ -19,6 +24,14 @@ export const AuthProvider = function (props) {
     login,
     logout,
   };
+
+  useEffect(() => {
+    if (router.asPath === "/" && isLoggedIn()) {
+      router.push("/transactions");
+    } else if (!isLoggedIn() && router.asPath !== "/") {
+      router.push("/");
+    }
+  }, [router]);
 
   return (
     <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>
