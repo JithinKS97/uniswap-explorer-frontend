@@ -18,6 +18,7 @@ export const AuthProvider = function (props) {
 
   const logout = () => {
     localStorage.removeItem("Authorisation");
+    router.push("/");
   };
 
   const value = {

@@ -15,9 +15,6 @@ export default function Index() {
   return (
     <Center>
       <Box>
-        <Box mb='2rem'>
-          <Heading mt='2rem'>Uniswap transactions</Heading>
-        </Box>
         {transactions.map((transaction) => (
           <Transaction key={transaction.hash} transaction={transaction} />
         ))}

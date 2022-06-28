@@ -29,7 +29,7 @@ export default function Index() {
     <Center h='100vh'>
       <Center display={"flex"} flexDirection='column'>
         <Heading>Uniswap explorer</Heading>
-        <Button onClick={handleClick} mt='1rem'>
+        <Button onClick={handleClick} mt='2rem'>
           Login with metamask
         </Button>
       </Center>
