@@ -14,8 +14,9 @@ export const verify = async (nonce) => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const signature = await signer.signMessage(message);
-  await axios.post(`${config.BASE_URL}/auth/verify`, {
+  const res = await axios.post(`${config.BASE_URL}/auth/verify`, {
     signature,
     nonce,
   });
+  return res.data.message;
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getTransactions } from "../../api";
+import { getTransactions } from "../../api/transactions";
 import { Center, Box, VStack, Heading } from "@chakra-ui/react";
 import Transaction from "./Transaction";
 

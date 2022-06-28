@@ -7,7 +7,8 @@ import { useMetaMask } from "metamask-react";
 import { verify } from "../../api/auth";
 
 export default function Index() {
-  const { status, connect, account, chainId, ethereum } = useMetaMask();
+  const { status, connect, account } = useMetaMask();
+  const { login } = useContext(AuthContext);
 
   const isConnectedToMetamask = status === "notConnected";
 
@@ -20,7 +21,8 @@ export default function Index() {
       selectedAccount = account;
     }
     const nonce = await getNonce(selectedAccount);
-    await verify(nonce);
+    const authToken = await verify(nonce);
+    login(authToken);
   };
 
   return (
