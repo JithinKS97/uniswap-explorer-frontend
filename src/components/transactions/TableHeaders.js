@@ -9,7 +9,7 @@ export default function TableHeaders() {
         <Th>Value</Th>
         <Th>Block number</Th>
         <Th>From</Th>
-        <Th>Timestamp</Th>
+        <Th>Time elapsed</Th>
       </Tr>
     </Thead>
   );

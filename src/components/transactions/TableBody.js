@@ -1,6 +1,6 @@
 import React from "react";
 import { Tbody, Tr, Td, Box } from "@chakra-ui/react";
-import { getTrimmedWord } from "../../utils";
+import { getTrimmedWord, getTimeElapsed } from "../../utils";
 import { Tooltip } from "@chakra-ui/react";
 
 export default function TableBody(props) {
@@ -17,7 +17,7 @@ export default function TableBody(props) {
               </Box>
             </Tooltip>
           </Td>
-          <Td>{Number(transaction.value).toFixed(2)}</Td>
+          <Td>{Number(transaction.value).toFixed(2)} Ether</Td>
           <Td>{transaction.blockNo}</Td>
           <Td>
             <Tooltip label={transaction.hash}>
@@ -26,7 +26,7 @@ export default function TableBody(props) {
               </Box>
             </Tooltip>
           </Td>
-          <Td>{transaction.timestamp}</Td>
+          <Td>{getTimeElapsed(transaction.timestamp)}</Td>
         </Tr>
       ))}
     </Tbody>
