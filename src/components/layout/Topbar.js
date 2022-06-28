@@ -36,6 +36,9 @@ export default function Topbar(props) {
 }
 
 function getTrimmedAccount(account, noOfChars) {
+  if (!account) {
+    return "";
+  }
   const starting = account.split("").slice(0, noOfChars).join("");
   const ending = account
     .split("")
