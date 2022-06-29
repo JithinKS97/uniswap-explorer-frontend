@@ -1,6 +1,10 @@
 import React from "react";
 import { Tbody, Tr, Td, Box } from "@chakra-ui/react";
-import { getTrimmedWord, getTimeElapsed } from "../../utils";
+import {
+  getLettersAtTheEnds,
+  getTimeElapsed,
+  getLettersAtTheBeginning,
+} from "../../utils";
 import { Tooltip } from "@chakra-ui/react";
 
 export default function TableBody(props) {
@@ -13,16 +17,29 @@ export default function TableBody(props) {
           <Td>
             <Tooltip label={transaction.hash}>
               <Box cursor='pointer'>
-                {getTrimmedWord(transaction.hash, 5, 5)}
+                {getLettersAtTheEnds(transaction.hash, 5, 3)}
               </Box>
             </Tooltip>
           </Td>
-          <Td>{Number(transaction.value).toFixed(2)} Ether</Td>
+          <Td>
+            <Tooltip label={transaction.method}>
+              <Box cursor={"pointer"}>
+                {getLettersAtTheBeginning(transaction.method, 15, 3)}
+              </Box>
+            </Tooltip>
+          </Td>
+          <Td>
+            <Tooltip label={transaction.value}>
+              <Box cursor={"pointer"}>
+                {Number(transaction.value).toFixed(2)} Ether
+              </Box>
+            </Tooltip>
+          </Td>
           <Td>{transaction.blockNo}</Td>
           <Td>
             <Tooltip label={transaction.hash}>
               <Box cursor='pointer'>
-                {getTrimmedWord(transaction.from, 5, 5)}
+                {getLettersAtTheEnds(transaction.from, 5, 3)}
               </Box>
             </Tooltip>
           </Td>

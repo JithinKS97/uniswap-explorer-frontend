@@ -1,4 +1,4 @@
-export function getTrimmedWord(word, endCharsNo, noOfDots) {
+export function getLettersAtTheEnds(word, endCharsNo, noOfDots) {
   if (!word) {
     return "";
   }
@@ -10,22 +10,33 @@ export function getTrimmedWord(word, endCharsNo, noOfDots) {
   return starting + dots(noOfDots) + ending;
 }
 
+export function getLettersAtTheBeginning(word, noOfChars, noOfDots) {
+  if (!word) {
+    return "";
+  }
+  const starting = word.split("").slice(0, noOfChars).join("");
+  return starting + dots(noOfDots);
+}
+
 export const getTimeElapsed = (timeStamp) => {
   const secondsElapsed = Date.now() / 1000 - timeStamp;
   const minutesElapsed = secondsElapsed / 60;
   const hoursElapsed = minutesElapsed / 60;
-  const daysElapsed = hoursElapsed / 24;
+  const remainingMinutes = Math.round(minutesElapsed % 60);
+  const daysElapsed = Math.round(hoursElapsed / 24);
+  const remainingHours = Math.round(hoursElapsed % 24);
+
   if (hoursElapsed > 24) {
-    return Math.round(daysElapsed) + "day ago";
+    return `${daysElapsed} day ${remainingHours} hour ago`;
   }
   if (minutesElapsed > 60) {
-    return Math.round(hoursElapsed) + "hour ago";
+    return `${Math.round(hoursElapsed)} hour ${remainingMinutes} min ago`;
   }
   if (secondsElapsed > 60) {
     return Math.round(minutesElapsed) + " min ago";
   }
   if (secondsElapsed <= 60) {
-    return secondsElapsed.toFixed(2) + " second ago";
+    return Math.round(secondsElapsed) + " second ago";
   }
 };
 
