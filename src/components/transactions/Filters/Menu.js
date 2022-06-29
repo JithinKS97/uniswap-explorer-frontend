@@ -1,8 +1,7 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
 import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 
-const times = [1, 6, 12, 24];
+const times = [1, 6, 12, 24, 48, 64];
 
 export default function index(props) {
   const { selectedTime, onTimeChange } = props;
