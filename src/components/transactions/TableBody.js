@@ -6,6 +6,8 @@ import {
   getLettersAtTheBeginning,
 } from "../../utils";
 import { Tooltip } from "@chakra-ui/react";
+import Link from "next/link";
+import config from "../../config";
 
 export default function TableBody(props) {
   const { transactions } = props;
@@ -16,9 +18,14 @@ export default function TableBody(props) {
         <Tr key={transaction.hash}>
           <Td>
             <Tooltip label={transaction.hash}>
-              <Box cursor='pointer'>
-                {getLettersAtTheEnds(transaction.hash, 5, 3)}
-              </Box>
+              <a
+                target={"_blank"}
+                href={`${config.ETHERSCAN_TX_BASE_URL}/${transaction.hash}`}
+                rel='noreferrer'>
+                <Box cursor='pointer'>
+                  {getLettersAtTheEnds(transaction.hash, 5, 3)}
+                </Box>
+              </a>
             </Tooltip>
           </Td>
           <Td>
@@ -37,10 +44,14 @@ export default function TableBody(props) {
           </Td>
           <Td>{transaction.blockNo}</Td>
           <Td>
-            <Tooltip label={transaction.hash}>
-              <Box cursor='pointer'>
-                {getLettersAtTheEnds(transaction.from, 5, 3)}
-              </Box>
+            <Tooltip label={transaction.from}>
+              <a
+                target='_black'
+                href={`${config.ETHERSCAN_ADDRESS_BASE_URL}/${transaction.from}`}>
+                <Box cursor='pointer'>
+                  {getLettersAtTheEnds(transaction.from, 5, 3)}
+                </Box>
+              </a>
             </Tooltip>
           </Td>
           <Td>{getTimeElapsed(transaction.timestamp)}</Td>

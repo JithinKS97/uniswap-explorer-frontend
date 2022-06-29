@@ -22,15 +22,19 @@ export const getTimeElapsed = (timeStamp) => {
   const secondsElapsed = Date.now() / 1000 - timeStamp;
   const minutesElapsed = secondsElapsed / 60;
   const hoursElapsed = minutesElapsed / 60;
-  const remainingMinutes = Math.round(minutesElapsed % 60);
-  const daysElapsed = Math.round(hoursElapsed / 24);
-  const remainingHours = Math.round(hoursElapsed % 24);
+  const remainingMinutes = minutesElapsed % 60;
+  const daysElapsed = hoursElapsed / 24;
+  const remainingHours = hoursElapsed % 24;
 
   if (hoursElapsed > 24) {
-    return `${daysElapsed} day ${remainingHours} hour ago`;
+    return `${Math.floor(daysElapsed)} day ${Math.round(
+      remainingHours
+    )} hour ago`;
   }
   if (minutesElapsed > 60) {
-    return `${Math.round(hoursElapsed)} hour ${remainingMinutes} min ago`;
+    return `${Math.floor(hoursElapsed)} hour ${Math.round(
+      remainingMinutes
+    )} min ago`;
   }
   if (secondsElapsed > 60) {
     return Math.round(minutesElapsed) + " min ago";
