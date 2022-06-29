@@ -1,10 +1,10 @@
 import React from "react";
 import { Tbody, Tr, Td, Box } from "@chakra-ui/react";
-import { getTimeElapsed } from "../../utils";
+import { getTimeElapsed } from "../../../utils";
 import { Tooltip } from "@chakra-ui/react";
-import Hash from "./Hash";
-import config from "../../config";
-import InputDetails from "./InputDetails";
+import Hash from "../Hash";
+import config from "../../../config";
+import InputDetails from "../InputDetails";
 
 export default function TableBody(props) {
   const { transactions } = props;
