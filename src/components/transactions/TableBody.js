@@ -1,9 +1,10 @@
 import React from "react";
 import { Tbody, Tr, Td, Box } from "@chakra-ui/react";
-import { getTimeElapsed, getLettersAtTheBeginning } from "../../utils";
+import { getTimeElapsed } from "../../utils";
 import { Tooltip } from "@chakra-ui/react";
-import Hash from "./hash";
+import Hash from "./Hash";
 import config from "../../config";
+import InputDetails from "./InputDetails";
 
 export default function TableBody(props) {
   const { transactions } = props;
@@ -19,11 +20,7 @@ export default function TableBody(props) {
             />
           </Td>
           <Td>
-            <Tooltip label={transaction.method}>
-              <Box cursor={"pointer"}>
-                {getLettersAtTheBeginning(transaction.method, 15, 3)}
-              </Box>
-            </Tooltip>
+            <InputDetails transaction={transaction} />
           </Td>
           <Td>
             <Tooltip label={transaction.value}>
