@@ -1,12 +1,8 @@
 import React from "react";
 import { Tbody, Tr, Td, Box } from "@chakra-ui/react";
-import {
-  getLettersAtTheEnds,
-  getTimeElapsed,
-  getLettersAtTheBeginning,
-} from "../../utils";
+import { getTimeElapsed, getLettersAtTheBeginning } from "../../utils";
 import { Tooltip } from "@chakra-ui/react";
-import Link from "next/link";
+import Hash from "./hash";
 import config from "../../config";
 
 export default function TableBody(props) {
@@ -17,16 +13,10 @@ export default function TableBody(props) {
       {transactions.map((transaction) => (
         <Tr key={transaction.hash}>
           <Td>
-            <Tooltip label={transaction.hash}>
-              <a
-                target={"_blank"}
-                href={`${config.ETHERSCAN_TX_BASE_URL}/${transaction.hash}`}
-                rel='noreferrer'>
-                <Box _hover={{ color: "#90CDF4" }} cursor='pointer'>
-                  {getLettersAtTheEnds(transaction.hash, 5, 3)}
-                </Box>
-              </a>
-            </Tooltip>
+            <Hash
+              baseUrl={config.ETHERSCAN_TX_BASE_URL}
+              hash={transaction.hash}
+            />
           </Td>
           <Td>
             <Tooltip label={transaction.method}>
@@ -44,15 +34,10 @@ export default function TableBody(props) {
           </Td>
           <Td>{transaction.blockNo}</Td>
           <Td>
-            <Tooltip label={transaction.from}>
-              <a
-                target='_black'
-                href={`${config.ETHERSCAN_ADDRESS_BASE_URL}/${transaction.from}`}>
-                <Box _hover={{ color: "#90CDF4" }} cursor='pointer'>
-                  {getLettersAtTheEnds(transaction.from, 5, 3)}
-                </Box>
-              </a>
-            </Tooltip>
+            <Hash
+              hash={transaction.from}
+              baseUrl={config.ETHERSCAN_ADDRESS_BASE_URL}
+            />
           </Td>
           <Td>{getTimeElapsed(transaction.timestamp)}</Td>
         </Tr>
