@@ -22,7 +22,7 @@ export default function TableBody(props) {
                 target={"_blank"}
                 href={`${config.ETHERSCAN_TX_BASE_URL}/${transaction.hash}`}
                 rel='noreferrer'>
-                <Box cursor='pointer'>
+                <Box _hover={{ color: "#90CDF4" }} cursor='pointer'>
                   {getLettersAtTheEnds(transaction.hash, 5, 3)}
                 </Box>
               </a>
@@ -48,7 +48,7 @@ export default function TableBody(props) {
               <a
                 target='_black'
                 href={`${config.ETHERSCAN_ADDRESS_BASE_URL}/${transaction.from}`}>
-                <Box cursor='pointer'>
+                <Box _hover={{ color: "#90CDF4" }} cursor='pointer'>
                   {getLettersAtTheEnds(transaction.from, 5, 3)}
                 </Box>
               </a>
