@@ -2,15 +2,20 @@ import React from "react";
 import { Box } from "@chakra-ui/react";
 import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 
-export default function index() {
+const times = [1, 6, 12, 24];
+
+export default function index(props) {
+  const { selectedTime, onTimeChange } = props;
+
   return (
     <Menu>
-      <MenuButton as={Button}>Actions</MenuButton>
+      <MenuButton as={Button}>Last {selectedTime} hour</MenuButton>
       <MenuList>
-        <MenuItem>1 hour ago</MenuItem>
-        <MenuItem>6 hours ago</MenuItem>
-        <MenuItem>12 hours ago</MenuItem>
-        <MenuItem>1 day ago</MenuItem>
+        {times.map((time) => (
+          <MenuItem onClick={onTimeChange} value={time} key={time}>
+            Last {time} hour
+          </MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );

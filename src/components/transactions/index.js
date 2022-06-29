@@ -8,23 +8,38 @@ import Filters from "./Filters";
 export default function Index() {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [selectedTime, setSelectedTime] = useState(1);
 
   useEffect(() => {
     setLoading(true);
-    getTransactions().then((transactions) => {
+    fetchTransactions(selectedTime);
+  }, []);
+
+  const handleTimeChange = (e) => {
+    setSelectedTime(e.target.value);
+    fetchTransactions(e.target.value);
+  };
+
+  const fetchTransactions = (time) => {
+    setLoading(true);
+    getTransactions(time).then((transactions) => {
       setTransactions(transactions);
       setLoading(false);
     });
-  }, []);
+  };
 
-  if (loading) {
-    return <Loading />;
-  }
+  const refresh = () => {
+    fetchTransactions(selectedTime);
+  };
 
   return (
     <Box padding={"0rem 4rem"}>
-      <Filters />
-      <TransactionTable transactions={transactions} />
+      <Filters
+        onRefreshClick={refresh}
+        selectedTime={selectedTime}
+        onTimeChange={handleTimeChange}
+      />
+      {loading ? <Loading /> : <TransactionTable transactions={transactions} />}
     </Box>
   );
 }
