@@ -18,7 +18,7 @@ export default function Transaction(props) {
   const { transactions } = props;
 
   return (
-    <TableContainer mt='2rem'>
+    <TableContainer mt='1rem'>
       <Table variant='simple'>
         <TableHeaders />
         <TableBody transactions={transactions} />
