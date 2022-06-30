@@ -13,7 +13,7 @@ export default function TokenNames(props) {
   }, [addresses]);
 
   if (tokenNames.length > 0) {
-    return JSON.stringify(tokenNames);
+    return tokenNames.join(", ");
   } else {
     return <Spinner ml='2rem' size='sm' />;
   }
