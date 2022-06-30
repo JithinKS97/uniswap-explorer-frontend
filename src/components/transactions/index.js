@@ -7,7 +7,7 @@ import Filters from "./Filters";
 
 export default function Index() {
   const [transactions, setTransactions] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [selectedTime, setSelectedTime] = useState(1);
 
   useEffect(() => {
