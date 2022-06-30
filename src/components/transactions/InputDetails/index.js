@@ -23,7 +23,7 @@ export default function InputDetails(props) {
         onClose={handleClose}
         isOpen={showInputDetails}
       />
-      <Tooltip label={transaction.method}>
+      <Tooltip label={splitCase(transaction.method)}>
         <Box
           onClick={handleShowClick}
           _hover={{ color: "#90CDF4" }}
