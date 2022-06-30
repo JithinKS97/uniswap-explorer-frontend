@@ -10,6 +10,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 import InputDetailsTable from "./InputDetailsTable";
+import { splitCase } from "../../../utils";
+
 function InputDetailsModal(props) {
   const { isOpen, onClose, transaction } = props;
   return (
@@ -17,7 +19,7 @@ function InputDetailsModal(props) {
       <Modal size={"5xl"} isCentered isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{transaction.method}</ModalHeader>
+          <ModalHeader>{splitCase(transaction.method)}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <InputDetailsTable input={transaction.input} />

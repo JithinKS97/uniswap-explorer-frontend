@@ -4,6 +4,7 @@ import TokenNames from "./fields/TokenNames";
 import TokenName from "./fields/TokenName";
 import Hash from "../Hash";
 import config from "../../../config";
+import { splitCase } from "../../../utils";
 
 export default function InputDetailsTable(props) {
   const { input } = props;
@@ -15,13 +16,6 @@ export default function InputDetailsTable(props) {
       return <TokenNames addresses={input["path"]} />;
     } else if (inputName.includes("token")) {
       return <TokenName address={input[inputName]} />;
-    } else if (inputName === "to") {
-      return (
-        <Hash
-          baseUrl={config.ETHERSCAN_ADDRESS_BASE_URL}
-          hash={input[inputName]}
-        />
-      );
     } else {
       return input[inputName];
     }
@@ -36,7 +30,7 @@ export default function InputDetailsTable(props) {
           flexDirection='row'
           justifyContent={"left"}
           key={inputName}>
-          <Box flex='3'>{inputName}</Box>
+          <Box flex='3'>{splitCase(inputName)}</Box>
           <Box
             maxWidth={"40rem"}
             flex='7'
