@@ -16,6 +16,13 @@ export default function InputDetailsTable(props) {
       return <TokenNames addresses={input["path"]} />;
     } else if (inputName.includes("token")) {
       return <TokenName address={input[inputName]} />;
+    } else if (inputName === "to") {
+      return (
+        <Hash
+          baseUrl={config.ETHERSCAN_ADDRESS_BASE_URL}
+          hash={input[inputName]}
+        />
+      );
     } else {
       return input[inputName];
     }
