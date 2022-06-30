@@ -7,7 +7,9 @@ export default function hash(props) {
   return (
     <Tooltip label={hash}>
       <a target='_black' href={`${baseUrl}/${hash}`}>
-        <Box _hover={{ color: "#90CDF4" }} cursor='pointer'>
+        <Box
+          _hover={{ color: "#90CDF4", display: "inline-block" }}
+          cursor='pointer'>
           {getLettersAtTheEnds(hash, 5, 3)}
         </Box>
       </a>

@@ -2,6 +2,8 @@ import React from "react";
 import { Box } from "@chakra-ui/react";
 import TokenNames from "./fields/TokenNames";
 import TokenName from "./fields/TokenName";
+import Hash from "../Hash";
+import config from "../../../config";
 
 export default function InputDetailsTable(props) {
   const { input } = props;
@@ -13,6 +15,13 @@ export default function InputDetailsTable(props) {
       return <TokenNames addresses={input["path"]} />;
     } else if (inputName.includes("token")) {
       return <TokenName address={input[inputName]} />;
+    } else if (inputName === "to") {
+      return (
+        <Hash
+          baseUrl={config.ETHERSCAN_ADDRESS_BASE_URL}
+          hash={input[inputName]}
+        />
+      );
     } else {
       return input[inputName];
     }
