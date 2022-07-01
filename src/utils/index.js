@@ -27,20 +27,20 @@ export const getTimeElapsed = (timeStamp) => {
   const remainingHours = hoursElapsed % 24;
 
   if (hoursElapsed > 24) {
-    return `${Math.floor(daysElapsed)} day ${Math.round(
+    return `${Math.floor(daysElapsed)} day ${Math.floor(
       remainingHours
     )} hour ago`;
   }
   if (minutesElapsed > 60) {
-    return `${Math.floor(hoursElapsed)} hour ${Math.round(
+    return `${Math.floor(hoursElapsed)} hour ${Math.floor(
       remainingMinutes
     )} min ago`;
   }
   if (secondsElapsed > 60) {
-    return Math.round(minutesElapsed) + " min ago";
+    return Math.floor(minutesElapsed) + " min ago";
   }
   if (secondsElapsed <= 60) {
-    return Math.round(secondsElapsed) + " second ago";
+    return Math.floor(secondsElapsed) + " second ago";
   }
 };
 
