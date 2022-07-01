@@ -46,7 +46,7 @@ export const getTimeElapsed = (timeStamp) => {
 
 const dots = (n) => {
   let str = "";
-  for (let i = 0; i <= n; i++) {
+  for (let i = 0; i < n; i++) {
     str += ".";
   }
   return str;
